@@ -19,13 +19,13 @@ Route::get('/product','ProductController@index');
 
 Route::get('/create','ProductController@create');
 
-Route::post('/store','ProductController@store');
+Route::post('/store','ProductController@store')->name('store');
 
 Route::get('/{product}/edit','ProductController@edit');
 
-Route::post('/update/{product}','ProductController@update');
+Route::post('/update/{product}','ProductController@update')->name('update');
 
-Route::delete('delete/{product}','ProductController@destroy') ;
+Route::get('delete/{product}','ProductController@destroy') ;
 
 Auth::routes();
 

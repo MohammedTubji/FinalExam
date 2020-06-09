@@ -20,37 +20,39 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'producttitle'=>'required',
-            'productdescription'=>'required',
-            'productprice'=>'required',
+            'title'=>'required',
+            'description'=>'required',
+            'price'=>'required',
         ]);
-        $product =new Prouct();
-        $product->title = $request->producttitle;
-        $product->description = $request->productdescription;
-        $product->price = $request->productprice;
-        $product ->save();
+        $product =new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->save();
 
-        return redirect()->back();
+        $products = Product::all();
+        return view('product.index', compact('products'));
 
     }
     public function edit(Product $product)
     {
        
-        return view('product.index',compact('product'));
+        $products = Product::all();
+        return view('product.index',compact('product','products'));
     }
    public function update(Request $request , Product $product)
    {
         $request -> validate([
-            'producttitle'=>'required',
-            'productdescription'=>'required',
-            'productprice'=>'required',
+            'title'=>'required',
+            'description'=>'required',
+            'price'=>'required',
         ]);
 
         
 
-        $product->title = $request->producttitle;
-        $product->description = $request->productdescription;
-        $product->price = $request->productprice;
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
 
         $product ->save();
 
